@@ -36,9 +36,9 @@ public class ModPotions {
             () -> new AUPotion(new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST, 2000, 2)),
                     new Item.Properties().stacksTo(1),32));
 
-    public static final RegistryObject<Potion> RECALL_POTION
-            = POTIONS.register("recall_potion",
-            () -> new Potion(new MobEffectInstance(AUEffects.RECALL.get(), 0, 0)));
+    public static final RegistryObject<Item> RECALL_POTION
+            = ITEMS.register("recall_potion",
+            () -> new AUPotion(new Potion(new MobEffectInstance(AUEffects.RECALL.get(), 0, 0)), new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Potion> ANCHORED_RECALL_POTION =
             POTIONS.register("anchored_recall_potion",

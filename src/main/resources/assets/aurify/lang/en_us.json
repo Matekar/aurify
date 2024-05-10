@@ -6,6 +6,7 @@
   "item.minecraft.potion.effect.blindness_potion": "Blindness Potion",
   "item.minecraft.potion.effect.blindness_potion_2": "Blindness Potion",
   "item.aurify.custom_potion_item.effect.empty": "TestPotion",
+  "item.aurify.recall_potion.effect.empty": "Recall Potion",
 
   "effect.aurify.recall": "Recall",
   "effect.aurify.anchored_recall": "Anchored Recall",
@@ -16,10 +17,6 @@
   "effect.aurify.fatal_poison": "Fatal Poison",
 
   "item.aurify.poison_sword": "Poison Sword",
-
-  "item.minecraft.potion.effect.recall_potion": "Recall Potion",
-  "item.minecraft.splash_potion.effect.recall_potion": "Splash Potion of Recall",
-  "item.minecraft.lingering_potion.effect.recall_potion": "Lingering Potion of Recall",
 
   "item.minecraft.potion.effect.anchored_recall_potion": "Potion of Anchored Recall",
   "item.minecraft.splash_potion.effect.anchored_recall_potion": "Splash Potion of Anchored Recall",
