@@ -14,6 +14,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import pl.edu.agh.fis.is.io.aurify.effects.AUEffects;
+import pl.edu.agh.fis.is.io.aurify.potions.AUPotions;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(AurifyMod.MODID)
@@ -24,6 +26,10 @@ public class AurifyMod {
     private static final Logger LOGGER = LogUtils.getLogger();
     public AurifyMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        //Register potions
+        AUEffects.register(modEventBus);
+        AUPotions.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
