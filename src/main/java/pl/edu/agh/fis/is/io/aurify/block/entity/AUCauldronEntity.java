@@ -13,12 +13,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AUCauldronEntity extends BlockEntity implements Container {
     public static final int INVENTORY_SIZE = 2;
+    public static final int FLUID_CAPACITY = 1000;
     private final ItemStackHandler inventory = new ItemStackHandler(INVENTORY_SIZE) {
         @Override
         public int getSlotLimit(int slot) {
@@ -32,33 +35,14 @@ public class AUCauldronEntity extends BlockEntity implements Container {
 
         @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-//            ItemStack remaining = stack.copy();
-//            remaining.setCount(1); // Only allow one item to be inserted
-//
-//            for (int i = 0; i < getSlots(); i++) {
-//                ItemStack currentStack = getStackInSlot(i);
-//                if (currentStack.isEmpty()) {
-//                    if (!simulate) {
-//                        setStackInSlot(i, remaining);
-//                    }
-//                    return ItemStack.EMPTY;
-//                } else if (ItemStack.isSameItemSameTags(currentStack, remaining)) {
-//                    int space = Math.min(getSlotLimit(i) - currentStack.getCount(), remaining.getCount());
-//                    if (space > 0) {
-//                        if (!simulate) {
-//                            currentStack.grow(space);
-//                            setStackInSlot(i, currentStack);
-//                        }
-//                        remaining.shrink(space);
-//                    }
-//                    if (remaining.isEmpty()) {
-//                        return ItemStack.EMPTY;
-//                    }
-//                }
-//            }
-//
-//            return remaining;
             return super.insertItem(slot, stack, simulate);
+        }
+    };
+
+    private final FluidTank fluidTank = new FluidTank(FLUID_CAPACITY) {
+        @Override
+        protected void onContentsChanged() {
+            setChanged();
         }
     };
 
@@ -144,5 +128,9 @@ public class AUCauldronEntity extends BlockEntity implements Container {
             return LazyOptional.of(() -> inventory).cast();
         }
         return super.getCapability(cap, side);
+    }
+
+    public IFluidHandler getFluidHandler() {
+        return fluidTank;
     }
 }
