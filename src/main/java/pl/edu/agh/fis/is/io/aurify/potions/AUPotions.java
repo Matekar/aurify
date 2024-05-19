@@ -25,6 +25,12 @@ public class AUPotions {
             POTIONS.register("beginning_potion",
             () -> new Potion(new MobEffectInstance(AUEffects.END_RECALL.get(), 0, 0)));
 
+    public static final RegistryObject<Potion> GRAVITY_POTION = POTIONS.register("gravity_potion",
+            () -> new Potion(new MobEffectInstance(AUEffects.GRAVITY.get(), 200, 0)));
+
+    public static final RegistryObject<Potion> THUNDEROUS_POTION = POTIONS.register("thunderous_potion",
+            () -> new Potion(new MobEffectInstance(AUEffects.THUNDEROUS.get(), 1)));
+
     public static void register(IEventBus eventBus) {
         POTIONS.register(eventBus);
     }

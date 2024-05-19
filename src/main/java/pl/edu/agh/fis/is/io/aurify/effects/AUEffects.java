@@ -21,6 +21,14 @@ public class AUEffects {
     public static final RegistryObject<InstantenousMobEffect> END_RECALL
             = MOB_EFFECTS.register("end_recall", () -> new RecallEffect(MobEffectCategory.NEUTRAL, 0xFF00FF, Level.END));
 
+    public static final RegistryObject<MobEffect> GRAVITY = MOB_EFFECTS.register(
+            "gravity", () -> new GravityEffect(MobEffectCategory.BENEFICIAL, 3124687)
+    );
+
+    public static final RegistryObject<MobEffect> THUNDEROUS = MOB_EFFECTS.register(
+            "thunderous", () -> new ThunderousEffect(MobEffectCategory.HARMFUL, 14745599)
+    );
+
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
     }
