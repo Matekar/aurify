@@ -3,10 +3,14 @@ package pl.edu.agh.fis.is.io.aurify.block.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -43,8 +47,14 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         @Override
         protected void onContentsChanged() {
             setChanged();
+            if (!level.isClientSide()) {
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
+            }
         }
     };
+
+    private final LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> fluidTank);
+    private final LazyOptional<ItemStackHandler> itemHandler = LazyOptional.of(() -> inventory);
 
     public AUCauldronEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BREWING_CAULDRON.get(), pos, state);
@@ -53,19 +63,35 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
+        fluidTank.readFromNBT(pTag.getCompound("FluidTank"));
         inventory.deserializeNBT(pTag.getCompound("Inventory"));
     }
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
+        pTag.put("FluidTank", fluidTank.writeToNBT(new CompoundTag()));
         pTag.put("Inventory", inventory.serializeNBT());
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        return this.saveWithoutMetadata();
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
     public void setRemoved() {
         super.setRemoved();
         Containers.dropContents(this.level, this.worldPosition, this);
+
+        fluidHandler.invalidate();
+        itemHandler.invalidate();
     }
 
     @Override

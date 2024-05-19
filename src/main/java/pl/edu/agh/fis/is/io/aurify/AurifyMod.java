@@ -2,6 +2,7 @@ package pl.edu.agh.fis.is.io.aurify;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import pl.edu.agh.fis.is.io.aurify.block.ModBlocks;
 import pl.edu.agh.fis.is.io.aurify.block.entity.ModBlockEntities;
+import pl.edu.agh.fis.is.io.aurify.block.render.AUCauldronRenderer;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -66,6 +68,10 @@ public class AurifyMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
+        }
+        @SubscribeEvent
+        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntities.BREWING_CAULDRON.get(), AUCauldronRenderer::new);
         }
     }
 }
