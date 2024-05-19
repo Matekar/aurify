@@ -3,6 +3,9 @@
   "effect.aurify.anchored_recall": "Anchored Recall",
   "effect.aurify.end_recall": "Beginning",
 
+  "item.aurify.magic_dust": "magic dust",
+  "item.aurify.oceanic_core": "oceanic core",
+
   "item.minecraft.potion.effect.recall_potion": "Recall Potion",
   "item.minecraft.splash_potion.effect.recall_potion": "Splash Potion of Recall",
   "item.minecraft.lingering_potion.effect.recall_potion": "Lingering Potion of Recall",
@@ -13,5 +16,7 @@
 
   "item.minecraft.potion.effect.beginning_potion": "Potion of Beginning",
   "item.minecraft.splash_potion.effect.beginning_potion": "Splash Potion of Beginning",
-  "item.minecraft.lingering_potion.effect.beginning_potion": "Lingering Potion of Beginning"
+  "item.minecraft.lingering_potion.effect.beginning_potion": "Lingering Potion of Beginning",
+
+
 }
