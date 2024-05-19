@@ -127,7 +127,11 @@ public class AUCauldron extends BaseEntityBlock {
                         if (!player.isCreative()) {
                             player.setItemInHand(hand, new ItemStack(Items.BUCKET));
                         }
-                        level.playSound(null, pos, SoundEvents.BUCKET_EMPTY_LAVA, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        if (fluidStack.getFluid() == Fluids.LAVA) {
+                            level.playSound(null, pos, SoundEvents.BUCKET_EMPTY_LAVA, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        } else {
+                            level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                        }
                         return InteractionResult.SUCCESS;
                     } else {
                         return InteractionResult.FAIL;
