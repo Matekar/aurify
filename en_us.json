@@ -1,0 +1,26 @@
+{
+  "effect.aurify.recall": "Recall",
+  "effect.aurify.anchored_recall": "Anchored Recall",
+  "effect.aurify.end_recall": "Beginning",
+  "effect.aurify.gravity": "Gravity",
+  "effect.aurify.thunderous": "Thunderous",
+
+  "item.minecraft.potion.effect.recall_potion": "Recall Potion",
+  "item.minecraft.splash_potion.effect.recall_potion": "Splash Potion of Recall",
+  "item.minecraft.lingering_potion.effect.recall_potion": "Lingering Potion of Recall",
+
+  "item.minecraft.potion.effect.anchored_recall_potion": "Potion of Anchored Recall",
+  "item.minecraft.splash_potion.effect.anchored_recall_potion": "Splash Potion of Anchored Recall",
+  "item.minecraft.lingering_potion.effect.anchored_recall_potion": "Lingering Potion of Anchored Recall",
+
+  "item.minecraft.potion.effect.beginning_potion": "Potion of Beginning",
+  "item.minecraft.splash_potion.effect.beginning_potion": "Splash Potion of Beginning",
+  "item.minecraft.lingering_potion.effect.beginning_potion": "Lingering Potion of Beginning",
+
+  "item.minecraft.potion.effect.gravity_potion": "Gravity Potion",
+  "item.minecraft.splash_potion.effect.gravity_potion": "Splash Potion of Gravity",
+  "item.minecraft.lingering_potion.effect.gravity_potion": "Lingering Potion of Gravity",
+
+  "item.minecraft.splash_potion.effect.thunderous_potion": "Lightning"
+}
+
