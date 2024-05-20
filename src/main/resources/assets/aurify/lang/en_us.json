@@ -1,0 +1,12 @@
+{
+  "item.aurify.sapphire": "Sapphire",
+  "item.aurify.herb": "Herb",
+  "item.aurify.sickle": "Sickle",
+
+  "block.aurify.sapphire_block": "Block of Sapphire",
+  "block.aurify.herb_plant": "Herb Plant",
+  "block.aurify.tungsten_block": "Block of Tungsten",
+  "block.aurify.tungsten_ore_block": "Tungsten Ore",
+
+  "creativetab.aurify_tab": "Aurify Tab"
+}

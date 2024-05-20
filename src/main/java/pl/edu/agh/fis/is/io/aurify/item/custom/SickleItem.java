@@ -1,16 +1,9 @@
 package pl.edu.agh.fis.is.io.aurify.item.custom;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
+
+import net.minecraft.core.HolderSet;
 import pl.edu.agh.fis.is.io.aurify.AurifyMod;
-import pl.edu.agh.fis.is.io.aurify.ModBlocks;
+import pl.edu.agh.fis.is.io.aurify.block.ModBlocks;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
@@ -22,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BlockTypes;
+//import net.minecraft.world.level.block.BlockTypes;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,7 +35,7 @@ public class SickleItem extends Item {
             BlockState state = pContext.getLevel().getBlockState(pos);
             Player player = pContext.getPlayer();
             assert ModBlocks.HERB_PLANT.getKey() != null;
-            if(state.is(ModBlocks.HERB_PLANT.getKey())){
+            if(state.is((HolderSet<Block>) ModBlocks.HERB_PLANT.getKey())){
                 level.destroyBlock(pos, false);
                 assert player != null;
                 player.addItem(new ItemStack(ModItems.HERB.get().asItem()));

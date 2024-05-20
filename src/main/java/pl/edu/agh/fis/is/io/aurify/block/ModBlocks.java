@@ -26,7 +26,7 @@ public class ModBlocks {
             ()-> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
 
     public static final RegistryObject<Block> TUNGSTEN_ORE_BLOCK = registerBlock("tungsten_ore_block",
-            ()-> new DropExperienceBlock(ConstantInt.of(0), BlockBehaviour.Properties.of().mapColor(MapColor.SAND).requiresCorrectToolForDrops().strength(15.0F, 1200.0F)));
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).requiresCorrectToolForDrops().strength(15.0F, 1200.0F), ConstantInt.of(0)));
 
     public static final RegistryObject<Block> TUNGSTEN_BLOCK = registerBlock("tungsten_block",
             ()-> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).requiresCorrectToolForDrops().strength(15.0F, 1200.0F)));
