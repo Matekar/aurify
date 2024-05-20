@@ -1,6 +1,7 @@
 package pl.edu.agh.fis.is.io.aurify;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import pl.edu.agh.fis.is.io.aurify.effects.AUEffects;
+import pl.edu.agh.fis.is.io.aurify.item.ModItems;
 import pl.edu.agh.fis.is.io.aurify.potions.AUPotions;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -42,6 +44,9 @@ public class AurifyMod {
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        // Register Items
+        ModItems.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
