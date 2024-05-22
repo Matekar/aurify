@@ -4,6 +4,7 @@
   "effect.aurify.end_recall": "Beginning",
   "effect.aurify.gravity": "Gravity",
   "effect.aurify.thunderous": "Thunderous",
+  "effect.aurify.explosive": "Explosive",
 
   "item.minecraft.potion.effect.recall_potion": "Recall Potion",
   "item.minecraft.splash_potion.effect.recall_potion": "Splash Potion of Recall",
@@ -21,6 +22,8 @@
   "item.minecraft.splash_potion.effect.gravity_potion": "Splash Potion of Gravity",
   "item.minecraft.lingering_potion.effect.gravity_potion": "Lingering Potion of Gravity",
 
-  "item.minecraft.splash_potion.effect.thunderous_potion": "Lightning"
+  "item.minecraft.splash_potion.effect.thunderous_potion": "Lightning",
+
+  "item.minecraft.splash_potion.effect.explosive_potion": "Explosive"
 }
 

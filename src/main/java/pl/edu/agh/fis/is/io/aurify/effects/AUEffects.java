@@ -29,6 +29,10 @@ public class AUEffects {
             "thunderous", () -> new ThunderousEffect(MobEffectCategory.HARMFUL, 14745599)
     );
 
+    public static final RegistryObject<MobEffect> EXPLOSIVE = MOB_EFFECTS.register(
+            "explosive", () -> new ExplosiveEffect(MobEffectCategory.HARMFUL, 4522008)
+    );
+
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
     }
