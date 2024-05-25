@@ -31,6 +31,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.edu.agh.fis.is.io.aurify.block.entity.AUCauldronEntity;
@@ -166,7 +167,7 @@ public class AUCauldron extends BaseEntityBlock {
                 if (cauldronEntity.getFluidHandler().getFluidInTank(0).getAmount() < 333) {
                     cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
                     cauldronEntity.emptyPotion();
-                    cauldronEntity.clearInventory();
+                    cauldronEntity.clearContent();
                 }
 
                 return InteractionResult.SUCCESS;
@@ -183,7 +184,7 @@ public class AUCauldron extends BaseEntityBlock {
                 if (fluidAmountInCauldron > 0) {
                     fluidHandler.drain(fluidAmountInCauldron, IFluidHandler.FluidAction.EXECUTE);
                     cauldronEntity.emptyPotion();
-                    cauldronEntity.clearInventory();
+                    cauldronEntity.clearContent();
                     level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                     return InteractionResult.SUCCESS;
                 }

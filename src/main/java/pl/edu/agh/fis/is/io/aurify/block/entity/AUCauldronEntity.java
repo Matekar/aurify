@@ -209,12 +209,6 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     }
     public IItemHandler getInventory() { return inventory; }
 
-    public void clearInventory() {
-        for (int slot = 0; slot < inventory.getSlots(); slot++) {
-            inventory.setStackInSlot(slot, ItemStack.EMPTY);
-        }
-    }
-
     public Potion getStoredPotion() { return storedPotion; }
     public void emptyPotion() { storedPotion = null; }
 
