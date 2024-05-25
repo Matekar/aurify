@@ -110,11 +110,11 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         inventory.deserializeNBT(pTag.getCompound("Inventory"));
 
         CompoundTag potionTag = pTag.getCompound("Potion");
-        ItemStack potionStack = ItemStack.of(potionTag);
 
-        if (potionStack != ItemStack.EMPTY) {
+        if (!new CompoundTag().equals(potionTag)) {
+            ItemStack potionStack = ItemStack.of(potionTag);
             storedPotion = PotionUtils.getPotion(potionStack);
-        }
+        } else storedPotion = null;
     }
 
     @Override
@@ -129,8 +129,6 @@ public class AUCauldronEntity extends BlockEntity implements Container {
             ItemStack potionStack = new ItemStack(Items.POTION);
             PotionUtils.setPotion(potionStack, storedPotion);
             potionStack.save(potionTag);
-        } else {
-            ItemStack.EMPTY.save(potionTag);
         }
 
         pTag.put("Potion", potionTag);

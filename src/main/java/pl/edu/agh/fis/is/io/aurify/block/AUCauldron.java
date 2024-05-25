@@ -142,12 +142,8 @@ public class AUCauldron extends BaseEntityBlock {
             }
 
             if (!heldItem.isEmpty() && heldItem.getItem() == Items.GLASS_BOTTLE && cauldronEntity.getStoredPotion() != null) {
-                int amount = cauldronEntity.getFluidHandler().getFluidInTank(0).getAmount();
-
                 if (heldItem.getCount() != 1) heldItem.setCount(heldItem.getCount() - 1);
                 else player.setItemInHand(hand, ItemStack.EMPTY);
-
-                cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
 
                 BlockPos above = pos.above();
 
@@ -164,10 +160,13 @@ public class AUCauldron extends BaseEntityBlock {
                 potionEntity.setDeltaMovement(0, 0, 0);
                 level.addFreshEntity(potionEntity);
 
-                if (cauldronEntity.getFluidHandler().getFluidInTank(0).getAmount() < 333) {
-                    cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
+                int amount = cauldronEntity.getFluidHandler().getFluidInTank(0).getAmount();
+                if (amount < 335) {
                     cauldronEntity.emptyPotion();
                     cauldronEntity.clearContent();
+                    cauldronEntity.getFluidHandler().drain(335, IFluidHandler.FluidAction.EXECUTE);
+                } else {
+                    cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
                 }
 
                 return InteractionResult.SUCCESS;
@@ -175,6 +174,10 @@ public class AUCauldron extends BaseEntityBlock {
 
             if (heldItem.getItem() == Items.GLASS_BOTTLE) {
                 return InteractionResult.CONSUME;
+            }
+
+            if (heldItem.getItem() == Items.GLASS_BOTTLE) {
+                return InteractionResult.FAIL;
             }
 
             if (heldItem.getItem() == Items.AIR) {
