@@ -1,3 +1,5 @@
 {
-  "block.aurify.brewing_cauldron": "Brewing Cauldron"
+  "block.aurify.brewing_cauldron": "Brewing Cauldron",
+
+  "item.minecraft.potion.effect.darkness_potion": "Darkness Potion"
 }

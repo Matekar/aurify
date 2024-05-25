@@ -19,6 +19,7 @@ import pl.edu.agh.fis.is.io.aurify.block.ModBlocks;
 import pl.edu.agh.fis.is.io.aurify.block.entity.ModBlockEntities;
 import pl.edu.agh.fis.is.io.aurify.block.render.AUCauldronRenderer;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
+import pl.edu.agh.fis.is.io.aurify.potion.ModPotions;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(AurifyMod.MODID)
@@ -33,6 +34,7 @@ public class AurifyMod {
         ModItems.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModPotions.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

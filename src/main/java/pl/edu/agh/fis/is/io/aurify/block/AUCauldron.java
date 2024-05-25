@@ -8,9 +8,11 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BottleItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -34,11 +36,6 @@ import org.jetbrains.annotations.Nullable;
 import pl.edu.agh.fis.is.io.aurify.block.entity.AUCauldronEntity;
 
 public class AUCauldron extends BaseEntityBlock {
-    private static final int SIDE_THICKNESS = 2;
-    private static final int LEG_WIDTH = 4;
-    private static final int LEG_HEIGHT = 3;
-    private static final int LEG_DEPTH = 2;
-    protected static final int FLOOR_LEVEL = 4;
     private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), BooleanOp.ONLY_FIRST);
 
@@ -113,6 +110,19 @@ public class AUCauldron extends BaseEntityBlock {
         if (blockEntity instanceof AUCauldronEntity) {
             AUCauldronEntity cauldronEntity = (AUCauldronEntity) blockEntity;
 
+            if (heldItem.isEmpty()) {
+                IFluidHandler fluidHandler = ((AUCauldronEntity) blockEntity).getFluidHandler();
+                int fluidAmmountInCauldron = fluidHandler.getFluidInTank(0).getAmount();
+
+                if (fluidAmmountInCauldron > 0) {
+                    fluidHandler.drain(fluidAmmountInCauldron, IFluidHandler.FluidAction.EXECUTE);
+                    level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F); // TODO: different on lava
+                    return InteractionResult.SUCCESS;
+                }
+
+                return InteractionResult.FAIL;
+            }
+
             if (!heldItem.isEmpty() && heldItem.getItem() instanceof BucketItem) {
                 Fluid bucketFluid = ((BucketItem) heldItem.getItem()).getFluid();
 
@@ -137,6 +147,28 @@ public class AUCauldron extends BaseEntityBlock {
                         return InteractionResult.FAIL;
                     }
                 }
+            }
+
+            if (!heldItem.isEmpty() && heldItem.getItem() == Items.GLASS_BOTTLE && cauldronEntity.getStoredPotion() != null) {
+                if (heldItem.getCount() != 1) heldItem.setCount(heldItem.getCount() - 1);
+                else player.setItemInHand(hand, ItemStack.EMPTY);
+
+                BlockPos above = pos.above();
+
+                ItemStack potionStack = new ItemStack(Items.POTION);
+                PotionUtils.setPotion(potionStack, cauldronEntity.getStoredPotion());
+                ItemEntity potionEntity = new ItemEntity(
+                        level,
+                        above.getX() + 0.5,
+                        above.getY(),
+                        above.getZ() + 0.5,
+                        potionStack
+                );
+
+                potionEntity.setDeltaMovement(0, 0, 0);
+                level.addFreshEntity(potionEntity);
+
+                return InteractionResult.SUCCESS;
             }
         }
 

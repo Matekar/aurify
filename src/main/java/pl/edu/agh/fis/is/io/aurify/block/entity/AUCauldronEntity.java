@@ -8,24 +8,40 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.edu.agh.fis.is.io.aurify.potion.ModPotions;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Logger;
 
 public class AUCauldronEntity extends BlockEntity implements Container {
     public static final int INVENTORY_SIZE = 2;
     public static final int FLUID_CAPACITY = 1000;
+
+    private Potion storedPotion = null;
     private final ItemStackHandler inventory = new ItemStackHandler(INVENTORY_SIZE) {
         @Override
         public int getSlotLimit(int slot) {
@@ -38,8 +54,16 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         }
 
         @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return isItemAllowedInSlot(slot, stack.getItem());
+        }
+
+        @Override
         public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return super.insertItem(slot, stack, simulate);
+            ItemStack result = super.insertItem(slot, stack, simulate);
+            storedPotion = checkRecipe();
+
+            return result;
         }
     };
 
@@ -55,6 +79,21 @@ public class AUCauldronEntity extends BlockEntity implements Container {
 
     private final LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> fluidTank);
     private final LazyOptional<ItemStackHandler> itemHandler = LazyOptional.of(() -> inventory);
+
+    private final Set<Item> allowedItemSet1 = Set.of(
+            Items.FERN,
+            Items.NETHER_WART
+    );
+
+    private final Set<Item> allowedItemSet2 = Set.of(
+            Items.SCULK_SHRIEKER,
+            Items.APPLE
+    );
+
+    private final Map<Set<Item>, Potion> RecipeMap = Map.of(
+            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), ModPotions.DARKNESS_POTION.get(),
+            Set.of(Items.FERN, Items.APPLE), Potions.LONG_REGENERATION
+            );
 
     public AUCauldronEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BREWING_CAULDRON.get(), pos, state);
@@ -88,7 +127,6 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     @Override
     public void setRemoved() {
         super.setRemoved();
-        Containers.dropContents(this.level, this.worldPosition, this);
 
         fluidHandler.invalidate();
         itemHandler.invalidate();
@@ -158,5 +196,28 @@ public class AUCauldronEntity extends BlockEntity implements Container {
 
     public IFluidHandler getFluidHandler() {
         return fluidTank;
+    }
+
+    public Potion getStoredPotion() { return storedPotion; }
+
+    private boolean isItemAllowedInSlot(int slot, Item item) {
+        if (slot == 0) {
+            return allowedItemSet1.contains(item);
+        }
+
+        if (slot == 1) {
+            return  allowedItemSet2.contains(item);
+        }
+
+        return false;
+    }
+
+    public Potion checkRecipe() {
+        Set<Item> inv = new HashSet<>();
+        for (int i = 0; i < INVENTORY_SIZE; i++) {
+            inv.add(inventory.getStackInSlot(i).getItem());
+        }
+
+        return RecipeMap.get(inv);
     }
 }
