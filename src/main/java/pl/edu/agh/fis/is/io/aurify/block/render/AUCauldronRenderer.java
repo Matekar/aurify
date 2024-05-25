@@ -8,15 +8,19 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import pl.edu.agh.fis.is.io.aurify.block.entity.AUCauldronEntity;
 
 import java.util.logging.Logger;
@@ -52,10 +56,8 @@ public class AUCauldronRenderer implements BlockEntityRenderer<AUCauldronEntity>
 
         TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTexture);
         int tintColor = fluidTypeExtensions.getTintColor(state, level, pos);
-        // tintColor = -Integer.MAX_VALUE + 0xFF0000;
 
-        float height = 0.6f;
-        float new_height = auCauldronEntity.getContainerSize();
+        float height = 0.9f * fluidStack.getAmount() / 1000;
 
         VertexConsumer builder = pBuffer.getBuffer(ItemBlockRenderTypes.getRenderLayer(state));
 

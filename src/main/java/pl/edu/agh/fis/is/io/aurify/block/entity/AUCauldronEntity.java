@@ -15,18 +15,21 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -104,6 +107,10 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         super.load(pTag);
         fluidTank.readFromNBT(pTag.getCompound("FluidTank"));
         inventory.deserializeNBT(pTag.getCompound("Inventory"));
+
+//        if (pTag.getBoolean("Potion")) {
+//            checkRecipe();
+//        }
     }
 
     @Override
@@ -111,6 +118,9 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         super.saveAdditional(pTag);
         pTag.put("FluidTank", fluidTank.writeToNBT(new CompoundTag()));
         pTag.put("Inventory", inventory.serializeNBT());
+
+//        if (storedPotion != null) pTag.putBoolean("Potion", true);
+//        else pTag.putBoolean("Potion", false);
     }
 
     @Override
@@ -197,8 +207,16 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     public IFluidHandler getFluidHandler() {
         return fluidTank;
     }
+    public IItemHandler getInventory() { return inventory; }
+
+    public void clearInventory() {
+        for (int slot = 0; slot < inventory.getSlots(); slot++) {
+            inventory.setStackInSlot(slot, ItemStack.EMPTY);
+        }
+    }
 
     public Potion getStoredPotion() { return storedPotion; }
+    public void emptyPotion() { storedPotion = null; }
 
     private boolean isItemAllowedInSlot(int slot, Item item) {
         if (slot == 0) {

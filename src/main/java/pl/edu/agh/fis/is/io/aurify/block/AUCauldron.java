@@ -35,6 +35,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.edu.agh.fis.is.io.aurify.block.entity.AUCauldronEntity;
 
+import java.util.logging.Logger;
+
 public class AUCauldron extends BaseEntityBlock {
     private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), BooleanOp.ONLY_FIRST);
@@ -65,25 +67,27 @@ public class AUCauldron extends BaseEntityBlock {
             ItemStack itemStack = itemEntity.getItem();
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if (blockEntity instanceof AUCauldronEntity) {
-                itemEntity.discard();
-                AUCauldronEntity cauldronEntity = (AUCauldronEntity) blockEntity;
-                ItemStack remaining = cauldronEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).map(handler -> {
-                    ItemStack tempIS = itemStack.copy();
+                if (((AUCauldronEntity) blockEntity).getFluidHandler().getFluidInTank(0).getAmount() > 0) {
+                    itemEntity.discard();
+                    AUCauldronEntity cauldronEntity = (AUCauldronEntity) blockEntity;
+                    ItemStack remaining = cauldronEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).map(handler -> {
+                        ItemStack tempIS = itemStack.copy();
 
-                    for (int i = 0; i < handler.getSlots(); i++) {
-                        tempIS = handler.insertItem(i, tempIS, false);
-                        if (tempIS.isEmpty()) {
-                            return ItemStack.EMPTY;
+                        for (int i = 0; i < handler.getSlots(); i++) {
+                            tempIS = handler.insertItem(i, tempIS, false);
+                            if (tempIS.isEmpty()) {
+                                return ItemStack.EMPTY;
+                            }
                         }
+
+                        return tempIS;
+                    }).orElse(itemStack.copy());
+
+                    // Drop remaining items if there are any
+                    if (!remaining.isEmpty()) {
+                        ItemEntity remainingItemEntity = new ItemEntity(pLevel, pPos.getX() + 0.5, pPos.getY() + 1, pPos.getZ() + 0.5, remaining);
+                        pLevel.addFreshEntity(remainingItemEntity);
                     }
-
-                    return tempIS;
-                }).orElse(itemStack.copy());
-
-                // Drop remaining items if there are any
-                if (!remaining.isEmpty()) {
-                    ItemEntity remainingItemEntity = new ItemEntity(pLevel, pPos.getX() + 0.5, pPos.getY() + 1, pPos.getZ() + 0.5, remaining);
-                    pLevel.addFreshEntity(remainingItemEntity);
                 }
             }
         }
@@ -109,19 +113,6 @@ public class AUCauldron extends BaseEntityBlock {
 
         if (blockEntity instanceof AUCauldronEntity) {
             AUCauldronEntity cauldronEntity = (AUCauldronEntity) blockEntity;
-
-            if (heldItem.isEmpty()) {
-                IFluidHandler fluidHandler = ((AUCauldronEntity) blockEntity).getFluidHandler();
-                int fluidAmmountInCauldron = fluidHandler.getFluidInTank(0).getAmount();
-
-                if (fluidAmmountInCauldron > 0) {
-                    fluidHandler.drain(fluidAmmountInCauldron, IFluidHandler.FluidAction.EXECUTE);
-                    level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F); // TODO: different on lava
-                    return InteractionResult.SUCCESS;
-                }
-
-                return InteractionResult.FAIL;
-            }
 
             if (!heldItem.isEmpty() && heldItem.getItem() instanceof BucketItem) {
                 Fluid bucketFluid = ((BucketItem) heldItem.getItem()).getFluid();
@@ -150,8 +141,12 @@ public class AUCauldron extends BaseEntityBlock {
             }
 
             if (!heldItem.isEmpty() && heldItem.getItem() == Items.GLASS_BOTTLE && cauldronEntity.getStoredPotion() != null) {
+                int amount = cauldronEntity.getFluidHandler().getFluidInTank(0).getAmount();
+
                 if (heldItem.getCount() != 1) heldItem.setCount(heldItem.getCount() - 1);
                 else player.setItemInHand(hand, ItemStack.EMPTY);
+
+                cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
 
                 BlockPos above = pos.above();
 
@@ -168,7 +163,32 @@ public class AUCauldron extends BaseEntityBlock {
                 potionEntity.setDeltaMovement(0, 0, 0);
                 level.addFreshEntity(potionEntity);
 
+                if (cauldronEntity.getFluidHandler().getFluidInTank(0).getAmount() < 333) {
+                    cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
+                    cauldronEntity.emptyPotion();
+                    cauldronEntity.clearInventory();
+                }
+
                 return InteractionResult.SUCCESS;
+            }
+
+            if (heldItem.getItem() == Items.GLASS_BOTTLE) {
+                return InteractionResult.CONSUME;
+            }
+
+            if (heldItem.getItem() == Items.AIR) {
+                IFluidHandler fluidHandler = ((AUCauldronEntity) blockEntity).getFluidHandler();
+                int fluidAmountInCauldron = fluidHandler.getFluidInTank(0).getAmount();
+
+                if (fluidAmountInCauldron > 0) {
+                    fluidHandler.drain(fluidAmountInCauldron, IFluidHandler.FluidAction.EXECUTE);
+                    cauldronEntity.emptyPotion();
+                    cauldronEntity.clearInventory();
+                    level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    return InteractionResult.SUCCESS;
+                }
+
+                return InteractionResult.FAIL;
             }
         }
 
