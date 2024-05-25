@@ -3,6 +3,7 @@ package pl.edu.agh.fis.is.io.aurify.block.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -108,9 +109,12 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         fluidTank.readFromNBT(pTag.getCompound("FluidTank"));
         inventory.deserializeNBT(pTag.getCompound("Inventory"));
 
-//        if (pTag.getBoolean("Potion")) {
-//            checkRecipe();
-//        }
+        CompoundTag potionTag = pTag.getCompound("Potion");
+        ItemStack potionStack = ItemStack.of(potionTag);
+
+        if (potionStack != ItemStack.EMPTY) {
+            storedPotion = PotionUtils.getPotion(potionStack);
+        }
     }
 
     @Override
@@ -119,8 +123,17 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         pTag.put("FluidTank", fluidTank.writeToNBT(new CompoundTag()));
         pTag.put("Inventory", inventory.serializeNBT());
 
-//        if (storedPotion != null) pTag.putBoolean("Potion", true);
-//        else pTag.putBoolean("Potion", false);
+        CompoundTag potionTag = new CompoundTag();
+
+        if (storedPotion != null) {
+            ItemStack potionStack = new ItemStack(Items.POTION);
+            PotionUtils.setPotion(potionStack, storedPotion);
+            potionStack.save(potionTag);
+        } else {
+            ItemStack.EMPTY.save(potionTag);
+        }
+
+        pTag.put("Potion", potionTag);
     }
 
     @Override
