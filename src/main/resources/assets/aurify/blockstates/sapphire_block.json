@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "aurify:block/sapphire_block"
+    }
+  }
+}
