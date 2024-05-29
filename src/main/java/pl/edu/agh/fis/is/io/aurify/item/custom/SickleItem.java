@@ -35,7 +35,7 @@ public class SickleItem extends Item {
             BlockState state = pContext.getLevel().getBlockState(pos);
             Player player = pContext.getPlayer();
             assert ModBlocks.HERB_PLANT.getKey() != null;
-            if(state.is((HolderSet<Block>) ModBlocks.HERB_PLANT.getKey())){
+            if(state.is(ModBlocks.HERB_PLANT.get())){
                 level.destroyBlock(pos, false);
                 assert player != null;
                 player.addItem(new ItemStack(ModItems.HERB.get().asItem()));

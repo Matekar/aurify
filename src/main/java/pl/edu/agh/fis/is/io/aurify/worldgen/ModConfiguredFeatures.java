@@ -18,9 +18,9 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> END_TUNGSTEN_ORE_KEY = registerKey("end_tungsten_ore");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
-        RuleTest endReplaceables = new BlockMatchTest(Blocks.END_STONE);
+        RuleTest endReplaceable = new BlockMatchTest(Blocks.END_STONE);
 
-        register(context, END_TUNGSTEN_ORE_KEY, Feature.ORE, new OreConfiguration(endReplaceables,
+        register(context, END_TUNGSTEN_ORE_KEY, Feature.ORE, new OreConfiguration(endReplaceable,
                 ModBlocks.TUNGSTEN_ORE_BLOCK.get().defaultBlockState(), 9));
     }
 
