@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "aurify:end_tungsten_ore"
+          "Name": "aurify:tungsten_ore_block"
         },
         "target": {
           "block": "minecraft:end_stone",
