@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import pl.edu.agh.fis.is.io.aurify.AurifyMod;
 
 public class ModBlockStateProvider extends BlockStateProvider {
         public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -17,7 +16,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         @Override
         protected void registerStatesAndModels() {
-            blockWithItem(ModBlocks.SAPPHIRE_BLOCK);
+            //blockWithItem(ModBlocks.SAPPHIRE_BLOCK);
 
             simpleBlockWithItem(ModBlocks.HERB_PLANT.get(), models().cross(blockTexture(ModBlocks.HERB_PLANT.get()).getPath(),
                     blockTexture(ModBlocks.HERB_PLANT.get())).renderType("cutout"));

@@ -1,9 +1,9 @@
 {
-  "item.aurify.sapphire": "Sapphire",
   "item.aurify.herb": "Herb",
   "item.aurify.sickle": "Sickle",
+  "item.aurify.tungsten_ingot": "Tungsten Ingot",
+  "item.aurify.raw_tungsten_ore": "Raw Tungsten",
 
-  "block.aurify.sapphire_block": "Block of Sapphire",
   "block.aurify.herb_plant": "Herb Plant",
   "block.aurify.tungsten_block": "Block of Tungsten",
   "block.aurify.tungsten_ore_block": "Tungsten Ore",

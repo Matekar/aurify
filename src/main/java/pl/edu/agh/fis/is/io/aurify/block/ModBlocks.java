@@ -3,14 +3,11 @@ package pl.edu.agh.fis.is.io.aurify.block;
 import pl.edu.agh.fis.is.io.aurify.AurifyMod;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,14 +19,11 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, AurifyMod.MODID);
 
-    public static final RegistryObject<Block> SAPPHIRE_BLOCK = registerBlock("sapphire_block",
-            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
-
     public static final RegistryObject<Block> TUNGSTEN_ORE_BLOCK = registerBlock("tungsten_ore_block",
-            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).requiresCorrectToolForDrops().strength(15.0F, 1200.0F), ConstantInt.of(0)));
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.END_STONE).requiresCorrectToolForDrops().strength(15.0F, 1200.0F), ConstantInt.of(0)));
 
     public static final RegistryObject<Block> TUNGSTEN_BLOCK = registerBlock("tungsten_block",
-            ()-> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).requiresCorrectToolForDrops().strength(15.0F, 1200.0F)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops().strength(15.0F, 1200.0F)));
 
     public static final RegistryObject<Block> HERB_PLANT = registerBlock("herb_plant",
             () -> new FlowerBlock( MobEffects.LUCK , 5,

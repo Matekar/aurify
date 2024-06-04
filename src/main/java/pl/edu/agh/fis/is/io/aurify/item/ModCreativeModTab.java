@@ -14,16 +14,17 @@ public class ModCreativeModTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AurifyMod.MODID);
 
-    public static final RegistryObject<CreativeModeTab> AURIFY_TAB = CREATIVE_MODE_TABS.register("aurify_tab", () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.SAPPHIRE.get()))
+    public static final RegistryObject<CreativeModeTab> AURIFY_TAB = CREATIVE_MODE_TABS.register("aurify_tab", () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.HERB.get()))
             .title(Component.translatable("creativetab.aurify_tab"))
             .displayItems((pParameters, pOutput)->{
-                pOutput.accept(ModItems.SAPPHIRE.get());
                 pOutput.accept(ModItems.HERB.get());
                 pOutput.accept(ModItems.SICKLE.get());
+                pOutput.accept(ModItems.TUNGSTEN_INGOT.get());
+                pOutput.accept(ModItems.RAW_TUNGSTEN_ORE.get());
                 pOutput.accept(ModBlocks.HERB_PLANT.get());
-                pOutput.accept(ModBlocks.SAPPHIRE_BLOCK.get());
                 pOutput.accept(ModBlocks.TUNGSTEN_BLOCK.get());
                 pOutput.accept(ModBlocks.TUNGSTEN_ORE_BLOCK.get());
+
             })
             .build());
 

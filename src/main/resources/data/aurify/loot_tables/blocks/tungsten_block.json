@@ -10,12 +10,12 @@
       ],
       "entries": [
         {
-          "type:": "minecraft:item",
-          "name": "aurify:sapphire_block"
+          "type": "minecraft:item",
+          "name": "aurify:tungsten_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "aurify:blocks/sapphire_block"
+  "random_sequence": "aurify:blocks/tungsten_block"
 }

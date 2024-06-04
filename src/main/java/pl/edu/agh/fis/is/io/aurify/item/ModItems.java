@@ -12,10 +12,13 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, AurifyMod.MODID);
 
-    public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire",
+    public static final RegistryObject<Item> HERB = ITEMS.register("herb",
             ()-> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> HERB = ITEMS.register("herb",
+    public static final RegistryObject<Item> TUNGSTEN_INGOT = ITEMS.register("tungsten_ingot",
+            ()-> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> RAW_TUNGSTEN_ORE = ITEMS.register("raw_tungsten_ore",
             ()-> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> SICKLE = ITEMS.register("sickle",
