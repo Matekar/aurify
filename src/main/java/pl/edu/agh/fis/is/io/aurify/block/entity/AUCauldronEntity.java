@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
@@ -96,7 +97,8 @@ public class AUCauldronEntity extends BlockEntity implements Container {
             @Override
             public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
                 ItemStack result = super.insertItem(slot, stack, simulate);
-                storedPotion = checkRecipe();
+                if (result != stack)
+                    checkRecipe();
 
                 return result;
             }
@@ -240,12 +242,16 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         };
     }
 
-    public Potion checkRecipe() {
+    public void checkRecipe() {
         Set<Item> inv = new HashSet<>();
         for (int i = 0; i < inventorySize; i++) {
             if (inventory.getStackInSlot(i).getItem() != Items.AIR) inv.add(inventory.getStackInSlot(i).getItem());
         }
 
-        return RecipeMap.get(inv);
+        if (RecipeMap.get(inv) != null) {
+            this.storedPotion = RecipeMap.get(inv);
+            if (!level.isClientSide())
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
+        }
     }
 }

@@ -57,6 +57,10 @@ public class AUCauldronRenderer implements BlockEntityRenderer<AUCauldronEntity>
         TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTexture);
         int tintColor = fluidTypeExtensions.getTintColor(state, level, pos);
 
+        if (auCauldronEntity.getStoredPotion() != null) {
+            tintColor = -Integer.MAX_VALUE + auCauldronEntity.getStoredPotion().getEffects().get(0).getEffect().getColor();
+        }
+
         float height = 0.9f * fluidStack.getAmount() / 1000;
 
         VertexConsumer builder = pBuffer.getBuffer(ItemBlockRenderTypes.getRenderLayer(state));
