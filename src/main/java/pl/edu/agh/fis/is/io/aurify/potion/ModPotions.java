@@ -16,8 +16,8 @@ public class ModPotions {
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, AurifyMod.MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, AurifyMod.MODID);
 
-    public static final RegistryObject<Potion> DARKNESS_POTION = POTIONS.register("darkness_potion",
-            () -> new Potion(new MobEffectInstance(MobEffects.DARKNESS, 200, 1)));
+    public static final RegistryObject<Potion> BLINDNESS_POTION = POTIONS.register("blindness_potion",
+            () -> new Potion(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0)));
 
     public static final RegistryObject<MobEffect> CUSTOM_POTION_EFFECT = EFFECTS.register("custom_potion_effect",
             AUPotionEffect::new);

@@ -3,14 +3,10 @@ package pl.edu.agh.fis.is.io.aurify.block.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
-import net.minecraft.world.Containers;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -22,12 +18,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
@@ -39,37 +32,13 @@ import pl.edu.agh.fis.is.io.aurify.potion.ModPotions;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
 
 public class AUCauldronEntity extends BlockEntity implements Container {
-    public static final int INVENTORY_SIZE = 2;
+    private int inventorySize;
     public static final int FLUID_CAPACITY = 1000;
 
     private Potion storedPotion = null;
-    private final ItemStackHandler inventory = new ItemStackHandler(INVENTORY_SIZE) {
-        @Override
-        public int getSlotLimit(int slot) {
-            return 1;
-        }
-
-        @Override
-        protected void onContentsChanged(int slot) {
-            setChanged();
-        }
-
-        @Override
-        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return isItemAllowedInSlot(slot, stack.getItem());
-        }
-
-        @Override
-        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            ItemStack result = super.insertItem(slot, stack, simulate);
-            storedPotion = checkRecipe();
-
-            return result;
-        }
-    };
+    private final ItemStackHandler inventory;
 
     private final FluidTank fluidTank = new FluidTank(FLUID_CAPACITY) {
         @Override
@@ -82,7 +51,7 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     };
 
     private final LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> fluidTank);
-    private final LazyOptional<ItemStackHandler> itemHandler = LazyOptional.of(() -> inventory);
+    private final LazyOptional<ItemStackHandler> itemHandler;
 
     private final Set<Item> allowedItemSet1 = Set.of(
             Items.FERN,
@@ -95,17 +64,50 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     );
 
     private final Map<Set<Item>, Potion> RecipeMap = Map.of(
-            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), ModPotions.DARKNESS_POTION.get(),
+            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), ModPotions.BLINDNESS_POTION.get(),
             Set.of(Items.FERN, Items.APPLE), Potions.LONG_REGENERATION
             );
 
+    public AUCauldronEntity(BlockPos pos, BlockState state, int inventorySize) {
+        super(ModBlockEntities.BREWING_CAULDRON_ENTITY.get(), pos, state);
+        this.inventorySize = inventorySize;
+
+        this.inventory = new ItemStackHandler(inventorySize) {
+            @Override
+            public int getSlotLimit(int slot) {
+                return 1;
+            }
+
+            @Override
+            protected void onContentsChanged(int slot) {
+                setChanged();
+            }
+
+            @Override
+            public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                return isItemAllowedInSlot(slot, stack.getItem());
+            }
+
+            @Override
+            public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+                ItemStack result = super.insertItem(slot, stack, simulate);
+                storedPotion = checkRecipe();
+
+                return result;
+            }
+        };
+
+        this.itemHandler = LazyOptional.of(() -> inventory);
+    }
+
     public AUCauldronEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.BREWING_CAULDRON.get(), pos, state);
+        this(pos, state, 0);
     }
 
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
+        inventorySize = pTag.getInt("inventorySize");
         fluidTank.readFromNBT(pTag.getCompound("FluidTank"));
         inventory.deserializeNBT(pTag.getCompound("Inventory"));
 
@@ -120,6 +122,7 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
+        pTag.putInt("inventorySize", inventorySize);
         pTag.put("FluidTank", fluidTank.writeToNBT(new CompoundTag()));
         pTag.put("Inventory", inventory.serializeNBT());
 
@@ -155,12 +158,12 @@ public class AUCauldronEntity extends BlockEntity implements Container {
 
     @Override
     public int getContainerSize() {
-        return INVENTORY_SIZE;
+        return inventorySize;
     }
 
     @Override
     public boolean isEmpty() {
-        for (int i = 0; i < INVENTORY_SIZE; i++) {
+        for (int i = 0; i < inventorySize; i++) {
             if (!inventory.getStackInSlot(i).isEmpty()) {
                 return false;
             }
@@ -197,14 +200,14 @@ public class AUCauldronEntity extends BlockEntity implements Container {
 
     @Override
     public void clearContent() {
-        for (int i = 0; i < INVENTORY_SIZE; i++) {
+        for (int i = 0; i < inventorySize; i++) {
             inventory.setStackInSlot(i, ItemStack.EMPTY);
         }
     }
 
     @Override
     public @NotNull BlockEntityType<?> getType() {
-        return ModBlockEntities.BREWING_CAULDRON.get();
+        return ModBlockEntities.BREWING_CAULDRON_ENTITY.get();
     }
 
     @Override
@@ -237,8 +240,8 @@ public class AUCauldronEntity extends BlockEntity implements Container {
 
     public Potion checkRecipe() {
         Set<Item> inv = new HashSet<>();
-        for (int i = 0; i < INVENTORY_SIZE; i++) {
-            inv.add(inventory.getStackInSlot(i).getItem());
+        for (int i = 0; i < inventorySize; i++) {
+            if (inventory.getStackInSlot(i).getItem() != Items.AIR) inv.add(inventory.getStackInSlot(i).getItem());
         }
 
         return RecipeMap.get(inv);

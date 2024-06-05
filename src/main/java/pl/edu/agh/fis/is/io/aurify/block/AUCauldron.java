@@ -41,9 +41,11 @@ import java.util.logging.Logger;
 public class AUCauldron extends BaseEntityBlock {
     private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), BooleanOp.ONLY_FIRST);
+    private int inventorySize;
 
-    public AUCauldron(Properties pProperties) {
+    public AUCauldron(Properties pProperties, int inventorySize) {
         super(pProperties);
+        this.inventorySize = inventorySize;
     }
 
     @Override
@@ -98,7 +100,7 @@ public class AUCauldron extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return new AUCauldronEntity(pPos, pState);
+        return new AUCauldronEntity(pPos, pState, this.inventorySize);
     }
 
     @Nullable
@@ -161,12 +163,12 @@ public class AUCauldron extends BaseEntityBlock {
                 level.addFreshEntity(potionEntity);
 
                 int amount = cauldronEntity.getFluidHandler().getFluidInTank(0).getAmount();
-                if (amount < 335) {
+                cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
+
+                if (amount - 333 < 333) {
                     cauldronEntity.emptyPotion();
                     cauldronEntity.clearContent();
-                    cauldronEntity.getFluidHandler().drain(335, IFluidHandler.FluidAction.EXECUTE);
-                } else {
-                    cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
+                    cauldronEntity.getFluidHandler().drain(1000, IFluidHandler.FluidAction.EXECUTE);
                 }
 
                 return InteractionResult.SUCCESS;

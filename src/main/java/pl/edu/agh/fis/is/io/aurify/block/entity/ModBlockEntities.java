@@ -11,7 +11,7 @@ import pl.edu.agh.fis.is.io.aurify.block.ModBlocks;
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, AurifyMod.MODID);
 
-    public static final RegistryObject<BlockEntityType<AUCauldronEntity>> BREWING_CAULDRON =
+    public static final RegistryObject<BlockEntityType<AUCauldronEntity>> BREWING_CAULDRON_ENTITY =
             BLOCK_ENTITIES.register("brewing_cauldron",
                     () -> BlockEntityType.Builder.of(AUCauldronEntity::new, ModBlocks.BREWING_CAULDRON.get()).build(null));
 

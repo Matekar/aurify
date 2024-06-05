@@ -19,7 +19,10 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, AurifyMod.MODID);
 
     public static final RegistryObject<Block> BREWING_CAULDRON = registerBlock("brewing_cauldron",
-            () -> new AUCauldron(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+            () -> new AUCauldron(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), 2));
+
+    public static final RegistryObject<Block> PRISMARINE_CAULDRON = registerBlock("prismarine_cauldron",
+            () -> new AUCauldron(BlockBehaviour.Properties.copy(Blocks.PRISMARINE).noOcclusion(), 3));
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
