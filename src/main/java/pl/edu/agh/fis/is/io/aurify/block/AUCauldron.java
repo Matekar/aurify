@@ -163,12 +163,12 @@ public class AUCauldron extends BaseEntityBlock {
                 level.addFreshEntity(potionEntity);
 
                 int amount = cauldronEntity.getFluidHandler().getFluidInTank(0).getAmount();
-                if (amount < 335) {
+                cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
+
+                if (amount - 333 < 333) {
                     cauldronEntity.emptyPotion();
                     cauldronEntity.clearContent();
-                    cauldronEntity.getFluidHandler().drain(335, IFluidHandler.FluidAction.EXECUTE);
-                } else {
-                    cauldronEntity.getFluidHandler().drain(333, IFluidHandler.FluidAction.EXECUTE);
+                    cauldronEntity.getFluidHandler().drain(1000, IFluidHandler.FluidAction.EXECUTE);
                 }
 
                 return InteractionResult.SUCCESS;
