@@ -19,6 +19,9 @@ public class ModPotions {
     public static final RegistryObject<Potion> BLINDNESS_POTION = POTIONS.register("blindness_potion",
             () -> new Potion(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0)));
 
+    public static final RegistryObject<Potion> BLINDNESS_POTION_2 = POTIONS.register("blindness_potion_2",
+            () -> new Potion(new MobEffectInstance(MobEffects.BLINDNESS, 200, 1)));
+
     public static final RegistryObject<MobEffect> CUSTOM_POTION_EFFECT = EFFECTS.register("custom_potion_effect",
             AUPotionEffect::new);
 
@@ -26,7 +29,7 @@ public class ModPotions {
             () -> new AUSplashPotion(new Potion(new MobEffectInstance(MobEffects.HARM, 200, 1)),
                     new Item.Properties().stacksTo(1),1.5f));
     public static final RegistryObject<Item> CUSTOM_LINGERING_POTION_ITEM = ITEMS.register("custom_lingering_potion_item",
-            () -> new AULingeringPotion(new Potion(new MobEffectInstance(MobEffects.DARKNESS, 200, 1)),
+            () -> new AULingeringPotion(new Potion(new MobEffectInstance(MobEffects.BLINDNESS, 200, 1)),
                     new Item.Properties().stacksTo(1),50,200,7,1.5f));
     public static final RegistryObject<Item> CUSTOM_POTION_ITEM_2 = ITEMS.register("custom_potion_item_2",
             () -> new AUPotion(new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST, 2000, 2)),

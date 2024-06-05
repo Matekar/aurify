@@ -63,7 +63,12 @@ public class AUCauldronEntity extends BlockEntity implements Container {
             Items.APPLE
     );
 
+    private final Set<Item> allowedItemSet3 = Set.of(
+            Items.REDSTONE
+    );
+
     private final Map<Set<Item>, Potion> RecipeMap = Map.of(
+            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER, Items.REDSTONE), ModPotions.BLINDNESS_POTION_2.get(),
             Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), ModPotions.BLINDNESS_POTION.get(),
             Set.of(Items.FERN, Items.APPLE), Potions.LONG_REGENERATION
             );
@@ -227,15 +232,12 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     public void emptyPotion() { storedPotion = null; }
 
     private boolean isItemAllowedInSlot(int slot, Item item) {
-        if (slot == 0) {
-            return allowedItemSet1.contains(item);
-        }
-
-        if (slot == 1) {
-            return  allowedItemSet2.contains(item);
-        }
-
-        return false;
+        return switch (slot) {
+            case 0 -> allowedItemSet1.contains(item);
+            case 1 -> allowedItemSet2.contains(item);
+            case 2 -> allowedItemSet3.contains(item);
+            default -> false;
+        };
     }
 
     public Potion checkRecipe() {
