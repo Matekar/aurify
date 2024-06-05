@@ -64,7 +64,7 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     );
 
     private final Map<Set<Item>, Potion> RecipeMap = Map.of(
-            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), ModPotions.DARKNESS_POTION.get(),
+            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), ModPotions.BLINDNESS_POTION.get(),
             Set.of(Items.FERN, Items.APPLE), Potions.LONG_REGENERATION
             );
 
