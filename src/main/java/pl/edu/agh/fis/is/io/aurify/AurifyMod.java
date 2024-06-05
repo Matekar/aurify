@@ -73,7 +73,7 @@ public class AurifyMod {
         }
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(ModBlockEntities.BREWING_CAULDRON.get(), AUCauldronRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.BREWING_CAULDRON_ENTITY.get(), AUCauldronRenderer::new);
         }
     }
 }
