@@ -33,6 +33,10 @@ public class AUEffects {
             "explosive", () -> new ExplosiveEffect(MobEffectCategory.HARMFUL, 4522008)
     );
 
+    public static final RegistryObject<MobEffect> FATAL_POISON = MOB_EFFECTS.register(
+            "fatal_poison", () -> new FatalPoisonEffect(MobEffectCategory.HARMFUL,16711935)
+    );
+
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
     }

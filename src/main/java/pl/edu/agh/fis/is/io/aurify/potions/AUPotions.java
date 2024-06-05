@@ -34,6 +34,9 @@ public class AUPotions {
     public static final RegistryObject<Potion> EXPLOSIVE_POTION = POTIONS.register("explosive_potion",
             ()-> new Potion(new MobEffectInstance(AUEffects.EXPLOSIVE.get(), 1, 2)));
 
+    public static final RegistryObject<Potion> FATAL_POISON_POTION = POTIONS.register("fatal_poison_potion",
+            () -> new Potion(new MobEffectInstance(AUEffects.FATAL_POISON.get(), 400)));
+
     public static void register(IEventBus eventBus) {
         POTIONS.register(eventBus);
     }
