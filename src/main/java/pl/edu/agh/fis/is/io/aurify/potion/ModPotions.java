@@ -1,4 +1,4 @@
-package pl.edu.agh.fis.is.io.aurify.potions;
+package pl.edu.agh.fis.is.io.aurify.potion;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.alchemy.Potion;
@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import pl.edu.agh.fis.is.io.aurify.AurifyMod;
 import pl.edu.agh.fis.is.io.aurify.effects.AUEffects;
 
-public class AUPotions {
+public class ModPotions{
     public static final DeferredRegister<Potion> POTIONS
             = DeferredRegister.create(ForgeRegistries.POTIONS, AurifyMod.MODID);
 
@@ -19,11 +19,11 @@ public class AUPotions {
 
     public static final RegistryObject<Potion> ANCHORED_RECALL_POTION =
             POTIONS.register("anchored_recall_potion",
-            () -> new Potion(new MobEffectInstance(AUEffects.ANCHORED_RECALL.get(), 0, 0)));
+                    () -> new Potion(new MobEffectInstance(AUEffects.ANCHORED_RECALL.get(), 0, 0)));
 
     public static final RegistryObject<Potion> BEGINNING_POTION =
             POTIONS.register("beginning_potion",
-            () -> new Potion(new MobEffectInstance(AUEffects.END_RECALL.get(), 0, 0)));
+                    () -> new Potion(new MobEffectInstance(AUEffects.END_RECALL.get(), 0, 0)));
 
     public static final RegistryObject<Potion> GRAVITY_POTION = POTIONS.register("gravity_potion",
             () -> new Potion(new MobEffectInstance(AUEffects.GRAVITY.get(), 200, 0)));
@@ -37,7 +37,7 @@ public class AUPotions {
     public static final RegistryObject<Potion> FATAL_POISON_POTION = POTIONS.register("fatal_poison_potion",
             () -> new Potion(new MobEffectInstance(AUEffects.FATAL_POISON.get(), 400)));
 
-    public static void register(IEventBus eventBus) {
+    public static void register(IEventBus eventBus){
         POTIONS.register(eventBus);
     }
 }

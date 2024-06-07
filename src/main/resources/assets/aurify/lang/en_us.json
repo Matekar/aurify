@@ -7,6 +7,8 @@
   "effect.aurify.explosive": "Explosive",
   "effect.aurify.fatal_poison": "Fatal Poison",
 
+  "item.aurify.poison_sword": "Poison Sword",
+
   "item.minecraft.potion.effect.recall_potion": "Recall Potion",
   "item.minecraft.splash_potion.effect.recall_potion": "Splash Potion of Recall",
   "item.minecraft.lingering_potion.effect.recall_potion": "Lingering Potion of Recall",
