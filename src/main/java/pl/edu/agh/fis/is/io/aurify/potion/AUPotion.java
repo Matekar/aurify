@@ -1,6 +1,7 @@
 package pl.edu.agh.fis.is.io.aurify.potion;
 
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -142,4 +143,10 @@ public class AUPotion extends PotionItem {
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         PotionUtils.addPotionTooltip(potion.getEffects(), tooltip, 1.0F);
     }
+
+    public List<MobEffectInstance> getEffects() {
+        return this.potion.getEffects();
+    }
+
+    public int getColor() { return this.getEffects().get(0).getEffect().getColor(); }
 }
