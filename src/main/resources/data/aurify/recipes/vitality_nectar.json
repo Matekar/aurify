@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "   ",
+    "   ",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "aurify:tungsten_ingot"
+    }
+  },
+  "result": {
+    "item": "aurify:tungsten_block"
+  }
+}
