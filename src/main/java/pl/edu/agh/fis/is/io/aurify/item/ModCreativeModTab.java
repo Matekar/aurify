@@ -25,6 +25,13 @@ public class ModCreativeModTab {
                 pOutput.accept(ModBlocks.TUNGSTEN_BLOCK.get());
                 pOutput.accept(ModBlocks.TUNGSTEN_ORE_BLOCK.get());
 
+                pOutput.accept(ModItems.VITALITY_NECTAR.get());
+                pOutput.accept(ModItems.MONSTER_REMNANT.get());
+                pOutput.accept(ModItems.AMBROSIA.get());
+                pOutput.accept(ModItems.DARK_POISON.get());
+                pOutput.accept(ModItems.END_HEART.get());
+                pOutput.accept(ModItems.EXPLOSIVE_ACCELERATOR.get());
+                pOutput.accept(ModItems.MYSTICAL_COMPOUND.get());
             })
             .build());
 

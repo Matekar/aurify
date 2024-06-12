@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " # ",
+    "@ %",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "aurify:monster_remnant"
+    },
+    "@": {
+      "item": "minecraft:ender_eye"
+    },
+    "%": {
+      "item": "minecraft:poisonous_potato"
+    }
+  },
+  "result": {
+    "item": "aurify:dark_poison"
+  }
+}
