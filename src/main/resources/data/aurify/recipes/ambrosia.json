@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " # ",
+    "@$%",
+    " ^ "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "@": {
+      "item": "minecraft:gunpowder"
+    },
+    "$": {
+      "item": "minecraft:iron_nugget"
+    },
+    "%": {
+      "item": "minecraft:arrow"
+    },
+    "^": {
+      "item": "minecraft:bone"
+    }
+  },
+  "result": {
+    "item": "aurify:monster_remnant"
+  }
+}
