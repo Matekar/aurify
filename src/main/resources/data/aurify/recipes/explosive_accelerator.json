@@ -3,11 +3,20 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "aurify:tungsten_block"
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "item": "minecraft:string"
     }
   ],
   "result": {
-    "item": "aurify:tungsten_ingot",
-    "count": 9
+    "item": "aurify:explosive_accelerator",
+    "count": 2
   }
 }

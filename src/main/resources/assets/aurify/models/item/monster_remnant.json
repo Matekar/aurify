@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "aurify:item/vitality_nectar"
+    "layer0": "aurify:item/monster_remnant"
   }
 }

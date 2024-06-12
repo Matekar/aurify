@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "aurify:sapphire"
+      "item": "aurify:tungsten_ingot"
     }
   },
   "result": {
-    "item": "aurify:sapphire_block"
+    "item": "aurify:tungsten_block"
   }
 }

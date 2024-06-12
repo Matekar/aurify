@@ -8,22 +8,22 @@
   ],
   "key": {
     "#": {
-      "item": "aurify:herb"
+      "item": "minecraft:string"
     },
     "@": {
-      "item": "minecraft:porkchop"
+      "item": "minecraft:gunpowder"
     },
     "$": {
-      "item": "minecraft:honey_bottle"
+      "item": "minecraft:iron_nugget"
     },
     "%": {
-      "item": "minecraft:apple"
+      "item": "minecraft:arrow"
     },
     "^": {
-      "item": "minecraft:wheat_seed"
+      "item": "minecraft:bone"
     }
   },
   "result": {
-    "item": "aurify:vitality_nectar"
+    "item": "aurify:monster_remnant"
   }
 }

@@ -3,27 +3,21 @@
   "category": "misc",
   "pattern": [
     " # ",
-    "@$%",
-    " ^ "
+    "@$@",
+    " # "
   ],
   "key": {
     "#": {
-      "item": "minecraft:string"
+      "item": "aurify:vitality_nectar"
     },
     "@": {
-      "item": "minecraft:gunpowder"
+      "item": "minecraft:cookie"
     },
     "$": {
-      "item": "minecraft:iron_nugget"
-    },
-    "%": {
-      "item": "minecraft:arrow"
-    },
-    "^": {
-      "item": "minecraft:bone"
+      "item": "minecraft:diamond"
     }
   },
   "result": {
-    "item": "aurify:monster_remnant"
+    "item": "aurify:ambrosia"
   }
 }

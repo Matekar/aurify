@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "aurify:item/herb"
+    "layer0": "aurify:item/ambrosia"
   }
 }

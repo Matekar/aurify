@@ -3,21 +3,21 @@
   "category": "misc",
   "pattern": [
     " # ",
-    "@$@",
+    "@ %",
     " # "
   ],
   "key": {
     "#": {
-      "item": "aurify:vitality_nectar"
+      "item": "aurify:monster_remnant"
     },
     "@": {
-      "item": "minecraft:cookie"
+      "item": "minecraft:ender_eye"
     },
-    "$": {
-      "item": "minecraft:diamond"
+    "%": {
+      "item": "minecraft:poisonous_potato"
     }
   },
   "result": {
-    "item": "aurify:ambrosia"
+    "item": "aurify:dark_poison"
   }
 }
