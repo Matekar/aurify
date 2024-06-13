@@ -13,7 +13,7 @@ public class ModBlockEntities {
 
     public static final RegistryObject<BlockEntityType<AUCauldronEntity>> BREWING_CAULDRON_ENTITY =
             BLOCK_ENTITIES.register("brewing_cauldron",
-                    () -> BlockEntityType.Builder.of(AUCauldronEntity::new, ModBlocks.BREWING_CAULDRON.get()).build(null));
+                    () -> BlockEntityType.Builder.of(AUCauldronEntity::new, ModBlocks.BREWING_CAULDRON.get(), ModBlocks.NAUTICAL_CAULDRON.get(), ModBlocks.TUNGSTEN_CAULDRON.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

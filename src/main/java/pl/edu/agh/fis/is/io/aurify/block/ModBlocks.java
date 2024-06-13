@@ -21,8 +21,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> BREWING_CAULDRON = registerBlock("brewing_cauldron",
             () -> new AUCauldron(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), 2));
 
-    public static final RegistryObject<Block> PRISMARINE_CAULDRON = registerBlock("prismarine_cauldron",
+    public static final RegistryObject<Block> NAUTICAL_CAULDRON = registerBlock("nautical_cauldron",
             () -> new AUCauldron(BlockBehaviour.Properties.copy(Blocks.PRISMARINE).noOcclusion(), 3));
+
+    public static final RegistryObject<Block> TUNGSTEN_CAULDRON = registerBlock("tungsten_cauldron",
+            () -> new AUCauldron(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).noOcclusion(), 4));
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
