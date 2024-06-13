@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import pl.edu.agh.fis.is.io.aurify.AurifyMod;
+import pl.edu.agh.fis.is.io.aurify.effects.AUEffects;
 
 public class ModPotions {
     public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, AurifyMod.MODID);
