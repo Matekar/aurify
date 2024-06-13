@@ -58,7 +58,7 @@ public class AUCauldronRenderer implements BlockEntityRenderer<AUCauldronEntity>
         int tintColor = fluidTypeExtensions.getTintColor(state, level, pos);
 
         if (auCauldronEntity.getStoredPotion() != null) {
-            tintColor = -Integer.MAX_VALUE + auCauldronEntity.getStoredPotion().getEffects().get(0).getEffect().getColor();
+            tintColor = -Integer.MAX_VALUE + auCauldronEntity.getStoredPotion().getColor();
         }
 
         float height = 0.9f * fluidStack.getAmount() / 1000;

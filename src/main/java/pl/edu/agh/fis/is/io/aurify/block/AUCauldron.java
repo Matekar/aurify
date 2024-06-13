@@ -149,8 +149,7 @@ public class AUCauldron extends BaseEntityBlock {
 
                 BlockPos above = pos.above();
 
-                ItemStack potionStack = new ItemStack(Items.POTION);
-                PotionUtils.setPotion(potionStack, cauldronEntity.getStoredPotion());
+                ItemStack potionStack = new ItemStack(cauldronEntity.getStoredPotion());
                 ItemEntity potionEntity = new ItemEntity(
                         level,
                         above.getX() + 0.5,

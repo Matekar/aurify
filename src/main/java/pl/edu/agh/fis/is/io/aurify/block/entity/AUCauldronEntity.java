@@ -28,6 +28,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.edu.agh.fis.is.io.aurify.potion.AUPotion;
 import pl.edu.agh.fis.is.io.aurify.potion.ModPotions;
 
 import java.util.HashSet;
@@ -38,7 +39,7 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     private int inventorySize;
     public static final int FLUID_CAPACITY = 1000;
 
-    private Potion storedPotion = null;
+    private AUPotion storedPotion = null;
     private final ItemStackHandler inventory;
 
     private final FluidTank fluidTank = new FluidTank(FLUID_CAPACITY) {
@@ -68,10 +69,8 @@ public class AUCauldronEntity extends BlockEntity implements Container {
             Items.REDSTONE
     );
 
-    private final Map<Set<Item>, Potion> RecipeMap = Map.of(
-            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER, Items.REDSTONE), ModPotions.BLINDNESS_POTION_2.get(),
-            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), ModPotions.BLINDNESS_POTION.get(),
-            Set.of(Items.FERN, Items.APPLE), Potions.LONG_REGENERATION
+    private final Map<Set<Item>, AUPotion> RecipeMap = Map.of(
+            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), (AUPotion) ModPotions.CUSTOM_POTION_ITEM_2.get()
             );
 
     public AUCauldronEntity(BlockPos pos, BlockState state, int inventorySize) {
@@ -122,7 +121,7 @@ public class AUCauldronEntity extends BlockEntity implements Container {
 
         if (!new CompoundTag().equals(potionTag)) {
             ItemStack potionStack = ItemStack.of(potionTag);
-            storedPotion = PotionUtils.getPotion(potionStack);
+            storedPotion = (AUPotion) potionStack.getItem();
         } else storedPotion = null;
     }
 
@@ -136,8 +135,7 @@ public class AUCauldronEntity extends BlockEntity implements Container {
         CompoundTag potionTag = new CompoundTag();
 
         if (storedPotion != null) {
-            ItemStack potionStack = new ItemStack(Items.POTION);
-            PotionUtils.setPotion(potionStack, storedPotion);
+            ItemStack potionStack = new ItemStack(storedPotion);
             potionStack.save(potionTag);
         }
 
@@ -230,7 +228,7 @@ public class AUCauldronEntity extends BlockEntity implements Container {
     }
     public IItemHandler getInventory() { return inventory; }
 
-    public Potion getStoredPotion() { return storedPotion; }
+    public AUPotion getStoredPotion() { return storedPotion; }
     public void emptyPotion() { storedPotion = null; }
 
     private boolean isItemAllowedInSlot(int slot, Item item) {
