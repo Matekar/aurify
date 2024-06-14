@@ -17,6 +17,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import pl.edu.agh.fis.is.io.aurify.effects.AUEffects;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
+import pl.edu.agh.fis.is.io.aurify.loot.ModLootModifiers;
 import pl.edu.agh.fis.is.io.aurify.potions.AUPotions;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -47,6 +48,7 @@ public class AurifyMod {
 
         // Register Items
         ModItems.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -58,6 +60,7 @@ public class AurifyMod {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
             event.accept(ModItems.MAGICDUST);
             event.accept(ModItems.OCEANICCORE);
+            event.accept(ModItems.POWERSHELL);
         }
     }
 
