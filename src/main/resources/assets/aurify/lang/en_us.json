@@ -3,10 +3,15 @@
   "block.aurify.nautical_cauldron": "Nautical Cauldron",
   "block.aurify.tungsten_cauldron": "Tungsten Cauldron",
 
-  "item.minecraft.potion.effect.blindness_potion": "Blindness Potion",
-  "item.minecraft.potion.effect.blindness_potion_2": "Blindness Potion",
-  "item.aurify.custom_potion_item.effect.empty": "TestPotion",
+  "item.aurify.blindness_potion.effect.empty": "Splash Blindness Potion",
+  "item.aurify.custom_potion_item.effect.empty": "Test Potion",
   "item.aurify.recall_potion.effect.empty": "Recall Potion",
+  "item.aurify.anchored_recall_potion.effect.empty": "Anchored Recall Potion",
+  "item.aurify.beginning_potion.effect.empty": "Beginning Potion",
+  "item.aurify.gravity_potion.effect.empty": "Gravity Potion",
+  "item.aurify.thunderous_potion.effect.empty": "Splash Thunderous Potion",
+  "item.aurify.explosive_potion.effect.empty": "Splash Explosive Potion",
+  "item.aurify.fatal_poison_potion.effect.empty": "Splash Fatal Poison",
 
   "effect.aurify.recall": "Recall",
   "effect.aurify.anchored_recall": "Anchored Recall",
@@ -16,24 +21,6 @@
   "effect.aurify.explosive": "Explosive",
   "effect.aurify.fatal_poison": "Fatal Poison",
 
-  "item.aurify.poison_sword": "Poison Sword",
-
-  "item.minecraft.potion.effect.anchored_recall_potion": "Potion of Anchored Recall",
-  "item.minecraft.splash_potion.effect.anchored_recall_potion": "Splash Potion of Anchored Recall",
-  "item.minecraft.lingering_potion.effect.anchored_recall_potion": "Lingering Potion of Anchored Recall",
-
-  "item.minecraft.potion.effect.beginning_potion": "Potion of Beginning",
-  "item.minecraft.splash_potion.effect.beginning_potion": "Splash Potion of Beginning",
-  "item.minecraft.lingering_potion.effect.beginning_potion": "Lingering Potion of Beginning",
-
-  "item.minecraft.potion.effect.gravity_potion": "Gravity Potion",
-  "item.minecraft.splash_potion.effect.gravity_potion": "Splash Potion of Gravity",
-  "item.minecraft.lingering_potion.effect.gravity_potion": "Lingering Potion of Gravity",
-
-  "item.minecraft.splash_potion.effect.thunderous_potion": "Lightning",
-
-  "item.minecraft.splash_potion.effect.explosive_potion": "Explosive",
-
-  "item.minecraft.splash_potion.effect.fatal_poison_potion": "Fatal Poison"
+  "item.aurify.poison_sword": "Poison Sword"
 }
 
