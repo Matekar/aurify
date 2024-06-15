@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:cauldron"
+    },
+    "title": "Aprrentice chef",
+    "description": "You found a brewing cauldron. Make some new mixtures!",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "aurifymod:cauldron",
+  "criteria": {
+    "min": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "aurify:brewing_cauldron"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

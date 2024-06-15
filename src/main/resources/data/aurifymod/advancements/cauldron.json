@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:cauldron"
+    },
+    "title": "cauldron",
+    "description": "You got a cauldron. Craft a brewing cauldron for new mixtures",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "aurify:textures/item/cauldron.png"
+  },
+  "criteria": {
+    "min": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cauldron"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
