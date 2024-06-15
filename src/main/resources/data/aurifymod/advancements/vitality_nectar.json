@@ -1,14 +1,14 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:cauldron"
+      "item": "aurify:vitality_nectar"
     },
-    "title": "cauldron",
-    "description": "You got a cauldron. Craft a brewing cauldron for new mixtures",
+    "title": "Potential happiness",
+    "description": "Get a vitality nectar",
     "show_toast": true,
-    "announce_to_chat": true,
-    "background": "aurify:textures/block/tungsten_block.png"
+    "announce_to_chat": true
   },
+  "parent": "aurifymod:brewing_cauldron",
   "criteria": {
     "min": {
       "trigger": "minecraft:inventory_changed",
@@ -16,7 +16,7 @@
         "items": [
           {
             "items": [
-              "minecraft:cauldron"
+              "aurify:vitality_nectar"
             ]
           }
         ]

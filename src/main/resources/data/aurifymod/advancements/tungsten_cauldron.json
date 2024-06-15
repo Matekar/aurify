@@ -1,14 +1,14 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:cauldron"
+      "item": "aurify:tungsten_cauldron"
     },
-    "title": "cauldron",
-    "description": "You got a cauldron. Craft a brewing cauldron for new mixtures",
+    "title": "Master Brewer",
+    "description": "Obtain a final tier of brewing cauldron",
     "show_toast": true,
-    "announce_to_chat": true,
-    "background": "aurify:textures/block/tungsten_block.png"
+    "announce_to_chat": true
   },
+  "parent": "aurifymod:raw_tungsten",
   "criteria": {
     "min": {
       "trigger": "minecraft:inventory_changed",
@@ -16,7 +16,7 @@
         "items": [
           {
             "items": [
-              "minecraft:cauldron"
+              "aurify:tungsten_cauldron"
             ]
           }
         ]

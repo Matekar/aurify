@@ -1,14 +1,14 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:cauldron"
+      "item": "aurify:raw_tungsten_ore"
     },
-    "title": "cauldron",
-    "description": "You got a cauldron. Craft a brewing cauldron for new mixtures",
+    "title": "raw_tungsten",
+    "description": "raw_tungsten!",
     "show_toast": true,
-    "announce_to_chat": true,
-    "background": "aurify:textures/block/tungsten_block.png"
+    "announce_to_chat": true
   },
+  "parent": "aurifymod:nautical_cauldron",
   "criteria": {
     "min": {
       "trigger": "minecraft:inventory_changed",
@@ -16,7 +16,7 @@
         "items": [
           {
             "items": [
-              "minecraft:cauldron"
+              "aurify:raw_tungsten_ore"
             ]
           }
         ]

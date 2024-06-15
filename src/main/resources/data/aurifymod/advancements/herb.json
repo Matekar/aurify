@@ -1,14 +1,14 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:cauldron"
+      "item": "aurify:herb"
     },
-    "title": "cauldron",
-    "description": "You got a cauldron. Craft a brewing cauldron for new mixtures",
+    "title": "Herb",
+    "description": "Get a herb",
     "show_toast": true,
-    "announce_to_chat": true,
-    "background": "aurify:textures/block/tungsten_block.png"
+    "announce_to_chat": true
   },
+  "parent": "aurifymod:sickle",
   "criteria": {
     "min": {
       "trigger": "minecraft:inventory_changed",
@@ -16,7 +16,7 @@
         "items": [
           {
             "items": [
-              "minecraft:cauldron"
+              "aurify:herb"
             ]
           }
         ]
