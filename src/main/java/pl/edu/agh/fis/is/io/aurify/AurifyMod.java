@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import pl.edu.agh.fis.is.io.aurify.block.ModBlocks;
 import pl.edu.agh.fis.is.io.aurify.item.ModCreativeModTab;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
+import pl.edu.agh.fis.is.io.aurify.loot.ModLootModifiers;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(AurifyMod.MODID)
@@ -34,6 +35,7 @@ public class AurifyMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -56,7 +58,6 @@ public class AurifyMod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

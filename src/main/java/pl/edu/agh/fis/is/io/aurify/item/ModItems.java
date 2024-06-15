@@ -46,6 +46,15 @@ public class ModItems {
     public static final RegistryObject<Item> MYSTICAL_COMPOUND = ITEMS.register("mystical_compound",
             ()-> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> MAGICDUST = ITEMS.register("magic_dust",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> OCEANICCORE = ITEMS.register("oceanic_core",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> POWERSHELL = ITEMS.register("power_shell",
+            () -> new Item(new Item.Properties()));
+
 ////////////////////////////////
 
     public static void register(IEventBus eventBus) {
