@@ -1,5 +1,6 @@
 package pl.edu.agh.fis.is.io.aurify.item;
 
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
 import pl.edu.agh.fis.is.io.aurify.AurifyMod;
 import pl.edu.agh.fis.is.io.aurify.item.custom.PoisonSwordItem;
@@ -34,13 +35,13 @@ public class ModItems {
             ()-> new Item(new Item.Properties().food(ModFood.MONSTER_REMNANT)));
 
     public static final RegistryObject<Item> AMBROSIA = ITEMS.register("ambrosia",
-            ()-> new Item(new Item.Properties()));
+            ()-> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> DARK_POISON = ITEMS.register("dark_poison",
-            ()-> new Item(new Item.Properties()));
+            ()-> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> END_HEART = ITEMS.register("end_heart",
-            ()-> new Item(new Item.Properties()));
+            ()-> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> EXPLOSIVE_ACCELERATOR = ITEMS.register("explosive_accelerator",
             ()-> new Item(new Item.Properties()));
