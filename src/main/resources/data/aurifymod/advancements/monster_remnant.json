@@ -3,8 +3,8 @@
     "icon": {
       "item": "aurify:monster_remnant"
     },
-    "title": "Once upon a time it was a scary beast",
-    "description": "Get a monster remnant",
+    "title": "A scary beast",
+    "description": "Or what is left of it",
     "show_toast": true,
     "announce_to_chat": true
   },

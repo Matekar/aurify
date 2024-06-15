@@ -3,8 +3,8 @@
     "icon": {
       "item": "aurify:raw_tungsten_ore"
     },
-    "title": "raw_tungsten",
-    "description": "raw_tungsten!",
+    "title": "Tungsten Age",
+    "description": "Mine a raw tungsten ore",
     "show_toast": true,
     "announce_to_chat": true
   },

@@ -3,8 +3,8 @@
     "icon": {
       "item": "aurify:power_shell"
     },
-    "title": "power_shell",
-    "description": "Get an power_shell",
+    "title": "Windows plus R",
+    "description": "Obtain a power shell",
     "show_toast": true,
     "announce_to_chat": true
   },

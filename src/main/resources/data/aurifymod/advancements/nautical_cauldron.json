@@ -4,7 +4,7 @@
       "item": "minecraft:cauldron"
     },
     "title": "Nautical cauldron",
-    "description": "You found a brewing cauldron. Make some new mixtures!",
+    "description": "Upgraded a brewing cauldron",
     "show_toast": true,
     "announce_to_chat": true
   },

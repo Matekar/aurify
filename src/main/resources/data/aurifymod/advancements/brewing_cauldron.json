@@ -3,7 +3,7 @@
     "icon": {
       "item": "minecraft:cauldron"
     },
-    "title": "Aprrentice chef",
+    "title": "Apprentice chef",
     "description": "You found a brewing cauldron. Make some new mixtures!",
     "show_toast": true,
     "announce_to_chat": true

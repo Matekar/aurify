@@ -3,8 +3,8 @@
     "icon": {
       "item": "aurify:herb"
     },
-    "title": "Herb",
-    "description": "Get a herb",
+    "title": "Herbalist",
+    "description": "Get a herb using sickle",
     "show_toast": true,
     "announce_to_chat": true
   },

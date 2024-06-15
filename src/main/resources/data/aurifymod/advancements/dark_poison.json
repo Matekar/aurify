@@ -4,7 +4,7 @@
       "item": "aurify:dark_poison"
     },
     "title": "Toxic drink",
-    "description": "Obtain a dark poison",
+    "description": "Craft a dark poison from monster remnant",
     "show_toast": true,
     "announce_to_chat": true
   },
