@@ -1,7 +1,6 @@
 package pl.edu.agh.fis.is.io.aurify;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,10 +14,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import pl.edu.agh.fis.is.io.aurify.effects.AUEffects;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
 import pl.edu.agh.fis.is.io.aurify.loot.ModLootModifiers;
-import pl.edu.agh.fis.is.io.aurify.potions.AUPotions;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(AurifyMod.MODID)
@@ -29,10 +26,6 @@ public class AurifyMod {
     private static final Logger LOGGER = LogUtils.getLogger();
     public AurifyMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        //Register potions
-        AUEffects.register(modEventBus);
-        AUPotions.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -57,11 +50,6 @@ public class AurifyMod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
-            event.accept(ModItems.MAGICDUST);
-            event.accept(ModItems.OCEANICCORE);
-            event.accept(ModItems.POWERSHELL);
-        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
