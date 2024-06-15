@@ -34,11 +34,22 @@ import java.util.List;
 public class AUPotion extends PotionItem {
 
     private final Potion potion;
+
+    private Rarity rarity = Rarity.COMMON;
     private final int drinkSpeed;
+
+    boolean isShiny = false;
 
     public AUPotion(Potion potion, Item.Properties properties) {
         super(properties);
         this.potion = potion;
+        this.drinkSpeed = 32;
+    }
+    public AUPotion(Potion potion, Item.Properties properties, boolean isShiny, Rarity rarity) {
+        super(properties);
+        this.potion = potion;
+        this.isShiny = isShiny;
+        this.rarity = rarity;
         this.drinkSpeed = 32;
     }
     public AUPotion(Potion potion, Item.Properties properties, int pDrinkingSpeed) {
@@ -46,10 +57,31 @@ public class AUPotion extends PotionItem {
         this.potion = potion;
         this.drinkSpeed = pDrinkingSpeed;
     }
-
+    @Override
+    public Rarity getRarity(ItemStack pStack) {
+        if (!pStack.isEnchanted()) {
+            return this.rarity;
+        } else {
+            switch (this.rarity) {
+                case COMMON:
+                case UNCOMMON:
+                    return Rarity.RARE;
+                case RARE:
+                    return Rarity.EPIC;
+                case EPIC:
+                default:
+                    return this.rarity;
+            }
+        }
+    }
     @Override
     public ItemStack getDefaultInstance() {
         return PotionUtils.setPotion(super.getDefaultInstance(), this.potion);
+    }
+
+    @Override
+    public  boolean isFoil(ItemStack stack){
+        return isShiny;
     }
 
     @Override
@@ -89,6 +121,8 @@ public class AUPotion extends PotionItem {
         entityLiving.gameEvent(GameEvent.DRINK);
         return stack;
     }
+
+
 
     @Override
     public InteractionResult useOn(UseOnContext context) {

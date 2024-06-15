@@ -5,6 +5,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -33,7 +34,7 @@ public class ModPotions {
                     new Item.Properties().stacksTo(1),50,200,7,1.5f));
     public static final RegistryObject<Item> CUSTOM_POTION_ITEM_2 = ITEMS.register("custom_potion_item_2",
             () -> new AUPotion(new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST, 2000, 2)),
-                    new Item.Properties().stacksTo(1),32));
+                    new Item.Properties().stacksTo(1),true, Rarity.EPIC));
 
     public static final RegistryObject<Item> RECALL_POTION = ITEMS.register("recall_potion",
             () -> new AUPotion(new Potion(new MobEffectInstance(AUEffects.RECALL.get(), 0, 0)),
