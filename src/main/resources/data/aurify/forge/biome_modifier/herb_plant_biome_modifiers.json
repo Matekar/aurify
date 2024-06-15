@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "dark_forest",
+  "features": "aurify:herb_plant",
+  "step": "vegetal_decoration"
+}

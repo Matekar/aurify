@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " # ",
+    "@$%",
+    " ^ "
+  ],
+  "key": {
+    "#": {
+      "item": "aurify:herb"
+    },
+    "@": {
+      "item": "minecraft:porkchop"
+    },
+    "$": {
+      "item": "minecraft:honey_bottle"
+    },
+    "%": {
+      "item": "minecraft:apple"
+    },
+    "^": {
+      "item": "minecraft:wheat_seeds"
+    }
+  },
+  "result": {
+    "item": "aurify:vitality_nectar"
+  }
+}

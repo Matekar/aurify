@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "aurify:tungsten_block"
+    }
+  ],
+  "result": {
+    "item": "aurify:tungsten_ingot",
+    "count": 9
+  }
+}

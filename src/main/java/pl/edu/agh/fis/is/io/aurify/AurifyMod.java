@@ -2,6 +2,8 @@ package pl.edu.agh.fis.is.io.aurify;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,6 +24,7 @@ import pl.edu.agh.fis.is.io.aurify.block.entity.ModBlockEntities;
 import pl.edu.agh.fis.is.io.aurify.block.render.AUCauldronRenderer;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
 import pl.edu.agh.fis.is.io.aurify.potion.ModPotions;
+import pl.edu.agh.fis.is.io.aurify.loot.ModLootModifiers;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(AurifyMod.MODID)
@@ -38,6 +41,8 @@ public class AurifyMod {
         ModBlockEntities.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModPotions.register(modEventBus);
+        ModCreativeModTab.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -53,7 +58,9 @@ public class AurifyMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.HERB_PLANT.getId(), ModBlocks.POTTED_HERB_PLANT);
+        });
     }
 
     // Add the example block item to the building blocks tab

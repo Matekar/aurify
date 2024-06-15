@@ -21,6 +21,24 @@
   "effect.aurify.explosive": "Explosive",
   "effect.aurify.fatal_poison": "Fatal Poison",
 
-  "item.aurify.poison_sword": "Poison Sword"
-}
+  "item.aurify.herb": "Wolf's Bane",
+  "item.aurify.sickle": "Sickle",
+  "item.aurify.tungsten_ingot": "Tungsten Ingot",
+  "item.aurify.raw_tungsten_ore": "Raw Tungsten",
+  "item.aurify.vitality_nectar": "Vitality Nectar",
+  "item.aurify.monster_remnant": "Monster Remnant",
+  "item.aurify.ambrosia": "Ambrosia",
+  "item.aurify.dark_poison": "Dark Poison",
+  "item.aurify.end_heart": "End Heart",
+  "item.aurify.explosive_accelerator": "Explosive Accelerator",
+  "item.aurify.mystical_compound": "Mystical Compund",
+  "item.aurify.magic_dust": "magic dust",
+  "item.aurify.oceanic_core": "oceanic core",
+  "block.aurify.herb_plant": "Wolf's Bane Plant",
+  "block.aurify.tungsten_block": "Block of Tungsten",
+  "block.aurify.tungsten_ore_block": "Tungsten Ore",
 
+  "item.aurify.poison_sword": "Poison Sword",
+
+  "creativetab.aurify_tab": "Aurify"
+}

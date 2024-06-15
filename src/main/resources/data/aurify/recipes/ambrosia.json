@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " # ",
+    "@$@",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "aurify:vitality_nectar"
+    },
+    "@": {
+      "item": "minecraft:cookie"
+    },
+    "$": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "aurify:ambrosia"
+  }
+}
