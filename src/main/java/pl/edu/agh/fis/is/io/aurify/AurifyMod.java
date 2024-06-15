@@ -22,6 +22,7 @@ import pl.edu.agh.fis.is.io.aurify.effects.AUEffects;
 import pl.edu.agh.fis.is.io.aurify.block.ModBlocks;
 import pl.edu.agh.fis.is.io.aurify.block.entity.ModBlockEntities;
 import pl.edu.agh.fis.is.io.aurify.block.render.AUCauldronRenderer;
+import pl.edu.agh.fis.is.io.aurify.item.ModCreativeModTab;
 import pl.edu.agh.fis.is.io.aurify.item.ModItems;
 import pl.edu.agh.fis.is.io.aurify.potion.ModPotions;
 import pl.edu.agh.fis.is.io.aurify.loot.ModLootModifiers;

@@ -1,5 +1,6 @@
 package pl.edu.agh.fis.is.io.aurify.block;
 
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
