@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "# #",
+    "%@%",
+    "#%#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "@": {
+      "item": "aurify:mystical_compound"
+    },
+    "%": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "result": {
+    "item": "aurify:nautical_cauldron"
+  }
+}
