@@ -24,11 +24,14 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.edu.agh.fis.is.io.aurify.item.ModItems;
 import pl.edu.agh.fis.is.io.aurify.potion.AUPotion;
+import pl.edu.agh.fis.is.io.aurify.potion.AUSplashPotion;
 import pl.edu.agh.fis.is.io.aurify.potion.ModPotions;
 
 import java.util.HashSet;
@@ -57,20 +60,36 @@ public class AUCauldronEntity extends BlockEntity implements Container {
 
     private final Set<Item> allowedItemSet1 = Set.of(
             Items.FERN,
-            Items.NETHER_WART
+            Items.NETHER_WART,
+            ModItems.HERB.get()
     );
 
     private final Set<Item> allowedItemSet2 = Set.of(
             Items.SCULK_SHRIEKER,
-            Items.APPLE
+            Items.APPLE,
+            ModItems.MYSTICAL_COMPOUND.get(),
+            Items.RABBIT_FOOT,
+            ModItems.VITALITY_NECTAR.get()
     );
 
     private final Set<Item> allowedItemSet3 = Set.of(
-            Items.REDSTONE
+            Items.REDSTONE,
+            Items.NETHERITE_SCRAP,
+            Items.ENDER_EYE,
+            ModItems.POWERSHELL.get()
+    );
+
+    private final Set<Item> allowedItemSet4 = Set.of(
+            ModItems.END_HEART.get()
     );
 
     private final Map<Set<Item>, AUPotion> RecipeMap = Map.of(
-            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), (AUPotion) ModPotions.CUSTOM_POTION_ITEM_2.get()
+            Set.of(Items.NETHER_WART, Items.SCULK_SHRIEKER), (AUPotion) ModPotions.CUSTOM_POTION_ITEM_2.get(), // Nie dotykać tej linii
+            Set.of(ModItems.HERB.get(), ModItems.MYSTICAL_COMPOUND.get()), (AUPotion) ModPotions.RECALL_POTION.get(),
+            Set.of(Items.NETHER_WART, ModItems.MYSTICAL_COMPOUND.get(), Items.NETHERITE_SCRAP), (AUPotion) ModPotions.ANCHORED_RECALL_POTION.get(),
+            Set.of(Items.NETHER_WART, ModItems.MYSTICAL_COMPOUND.get(), Items.ENDER_EYE, ModItems.END_HEART.get()), (AUPotion) ModPotions.BEGINNING_POTION.get(),
+            Set.of(ModItems.HERB.get(), Items.RABBIT_FOOT), (AUPotion) ModPotions.GRAVITY_POTION.get(),
+            Set.of(ModItems.HERB.get(), ModItems.VITALITY_NECTAR.get(), ModItems.POWERSHELL.get()), (AUPotion) ModPotions.DOLPHINS_GRACE_POTION.get()
             );
 
     public AUCauldronEntity(BlockPos pos, BlockState state, int inventorySize) {
@@ -236,6 +255,7 @@ public class AUCauldronEntity extends BlockEntity implements Container {
             case 0 -> allowedItemSet1.contains(item);
             case 1 -> allowedItemSet2.contains(item);
             case 2 -> allowedItemSet3.contains(item);
+            case 3 -> allowedItemSet4.contains(item);
             default -> false;
         };
     }

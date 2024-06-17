@@ -52,6 +52,10 @@ public class ModPotions {
             () -> new AUPotion(new Potion(new MobEffectInstance(AUEffects.GRAVITY.get(), 200, 0)),
                     new Item.Properties().stacksTo(1)));
 
+    public static final RegistryObject<Item> DOLPHINS_GRACE_POTION = ITEMS.register("dolphin_potion",
+            () -> new AUPotion(new Potion(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 600, 0)),
+                    new Item.Properties().stacksTo(1)));
+
     public static final RegistryObject<Item> THUNDEROUS_POTION = ITEMS.register("thunderous_potion",
             () -> new AUSplashPotion(new Potion(new MobEffectInstance(AUEffects.THUNDEROUS.get(), 1)),
                     new Item.Properties().stacksTo(1), .5f));
