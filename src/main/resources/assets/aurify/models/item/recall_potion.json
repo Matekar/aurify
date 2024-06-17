@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "aurify:item/recall_potion"
+    "layer0": "aurify:item/potion4"
   }
 }
