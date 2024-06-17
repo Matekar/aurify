@@ -50,6 +50,7 @@ public class ModCreativeModTab {
                 pOutput.accept(ModPotions.THUNDEROUS_POTION.get());
                 pOutput.accept(ModPotions.EXPLOSIVE_POTION.get());
                 pOutput.accept(ModPotions.FATAL_POISON_POTION.get());
+                pOutput.accept(ModPotions.DOLPHINS_GRACE_POTION.get());
             })
             .build());
 
